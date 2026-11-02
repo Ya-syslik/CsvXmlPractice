@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class DataModel {
     private String city;
     private String street;
@@ -27,5 +29,15 @@ class DataModel {
         return street;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        DataModel dataModel = (DataModel) o;
+        return house == dataModel.house && floor == dataModel.floor && Objects.equals(city, dataModel.city) && Objects.equals(street, dataModel.street);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(city, street, house, floor);
+    }
 }
