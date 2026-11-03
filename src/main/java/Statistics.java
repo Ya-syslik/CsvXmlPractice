@@ -3,10 +3,22 @@ import java.util.List;
 import java.util.Map;
 
 class Statistics {
+
+    private Statistics(){};
+
+    private static class Holder{
+        private static final  Statistics INSTANCE=new Statistics();
+    }
+
+    public static Statistics getInstance(){
+        return Statistics.Holder.INSTANCE;
+    }
+
+
     private Map<DataModel,Integer> duplicates= new HashMap<>();
     private Map<String,Map<Integer,Integer>> floorsByTowns=new HashMap<>();
 
-    private void computeStatistics(List<DataModel> addressList){
+    public void computeStatistics(List<DataModel> addressList){
 
         for (DataModel address :addressList){
             //если есть, то записывается старое++ или 1 если нет
